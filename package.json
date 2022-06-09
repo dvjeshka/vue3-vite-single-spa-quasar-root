@@ -9,12 +9,14 @@
   },
   "dependencies": {
     "@quasar/extras": "^1.14.0",
+    "es-module-shims": "^1.5.6",
     "quasar": "^2.7.1",
+    "single-spa": "^5.9.4",
     "single-spa-vue": "^2.5.1",
-    "vue": "^3.2.36",
-    "vue-router": "^4.0.15"
+    "vue": "^3.2.36"
   },
   "devDependencies": {
+    "vite-plugin-ejs": "^1.4.4",
     "@quasar/vite-plugin": "^1.0.10",
     "@vitejs/plugin-vue": "^2.3.3",
     "sass": "1.32.12",

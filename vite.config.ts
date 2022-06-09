@@ -1,49 +1,65 @@
-import { defineConfig, loadEnv } from 'vite'
+import { defineConfig, loadEnv,  } from 'vite'
 import vue from '@vitejs/plugin-vue'
-import { quasar, transformAssetUrls } from '@quasar/vite-plugin'
+import { quasar, transformAssetUrls } from '@quasar/vite-plugin';
+import { ViteEjsPlugin } from "vite-plugin-ejs";
 
-const envPrefix = 'VUE_APP_'
+import { resolve } from 'path';
+
+const envPrefix = 'VUE_APP_';
+
+const pathSrc = resolve(__dirname, "src")
+
+import { importMapConfig, importMap } from "./src/importMap";
+
+//console.log(importMapConfig, importMap);
 
 export default defineConfig(({ mode}) => {
 const env = loadEnv(mode, '', envPrefix);
-
-return {
+  return {
   envPrefix,
   plugins: [
     vue({ template: { transformAssetUrls }}),
     quasar({
       autoImportComponentCase: 'pascal',
-    })
+    }),
+    ViteEjsPlugin(({ mode}) => ({
+      isLocal: mode === "development",
+    })),
   ],
-  base: env.VUE_APP_BASE_URL, // Указываем фактический адрес этого микрофронта, чтобы рут приложение имело правильные ссылки на чанки этого микрофронта
+  root: "./src",
   build: {
+    minify: false,
+    outDir: "../dist",
+    emptyOutDir: true,
     target: 'esnext',
     rollupOptions: {
-      preserveEntrySignatures: true, // Оставляет exports для single spa
-      input: { app: "./src/main.ts" },
-      output: { entryFileNames: "js/[name].js" },
-      external: [
-        'vue',
-        //'vue-router',
-        //'singleSpaVue',
-        //'quasar',
-        //'quasar/lang/ru',
-        //'@quasar/extras/roboto-font/roboto-font.css',
-        //'@quasar/extras/material-icons/material-icons.css',
-        //'quasar/src/css/index.sass',
-      ],
+      preserveEntrySignatures: true,
+      input: {
+        index:'./src/index.html',
+        //main:'./src/main.ts',
+        'root-config': "./src/root-config.ts",
+        ...importMapConfig.input
+      },
+      output: {
+        entryFileNames:(chunkInfo) => {
+          return importMap[chunkInfo.name]
+              ? importMap[chunkInfo.name].split('./')[1]
+              : '[name].js'
+        }
+      },
+      external: importMapConfig.external,
     },
   },
   resolve: {
     alias: {
-      "@": '/src',
+      "@": resolve(__dirname, "src"),
     },
   },
   server: {
-    port: 3000,
+    port: 9000,
     open: true,
   },
   preview: {
-    port: 8080
+    port: 9001
   },
 }})

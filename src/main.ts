@@ -1,8 +1,8 @@
-import { h, createApp } from 'vue'
+console.log('main')
 import singleSpaVue from 'single-spa-vue'
+import { h, createApp } from 'vue'
 
 import App from '@/App.vue';
-import router from '@/router';
 
 import * as QuasarForTreeShaking from 'quasar';
 
@@ -13,12 +13,11 @@ import 'quasar/src/css/index.sass';
 
 function commonAppUses(app: any) {
     return app
-        .use(router)
         .use(QuasarForTreeShaking.Quasar, {
           lang: locale,
           config: {
               brand: {
-                primary: '#024079',
+                primary: '#0a7902', // TODO проверить обновление в микрофронте
                 secondary: '#26A69A',
                 accent: '#9C27B0',
                 dark: '#1D1D1D',
@@ -31,7 +30,7 @@ function commonAppUses(app: any) {
         })
 }
 
-commonAppUses(createApp(App)).mount('#app')
+//commonAppUses(createApp(App)).mount('#app');
 
 const vueLifecycles = singleSpaVue({
     createApp,
@@ -44,4 +43,3 @@ const vueLifecycles = singleSpaVue({
 });
 
 export const { bootstrap, mount, unmount } = vueLifecycles;
-
