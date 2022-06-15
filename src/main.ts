@@ -30,7 +30,7 @@ function commonAppUses(app: any) {
         })
 }
 
-//commonAppUses(createApp(App)).mount('#app');
+//commonAppUses(createApp(App)).mount('#layout');
 
 const vueLifecycles = singleSpaVue({
     createApp,
