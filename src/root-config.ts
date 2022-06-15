@@ -2,7 +2,7 @@ console.log('root-config.js');
 
 import { registerApplication, start } from "single-spa";
 
-window.addEventListener('single-spa:first-mount',()=>{
+window.addEventListener('single-spa:first-mount',()=> {
     registerApplication({
         name: "@finuslugi/cuf-backoffice",
         app: ({name}) => {
@@ -31,23 +31,7 @@ registerApplication({
     }
 });
 
-
-
 start({
     urlRerouteOnly: true,
 });
-
-/*import {
-    testString
-} from "@finuslugi/test";
-
-console.log(testString);
-
-
-
-
-
-console.log('registerApplication');
-
-*/
 

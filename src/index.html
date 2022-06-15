@@ -5,116 +5,26 @@
     <link rel="icon" href="/favicon.ico" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Vite root app</title>
-<!--      <link rel="preload" href="/vendors/vue.esm-browser.prod.js" as="script">
-      <link rel="preload" href="/vendors/quasar.esm.prod.js" as="script">
-      <link rel="preload" href="/vendors/single-spa-vue.js" as="script">-->
-<!--    <script type="importmap-shim" src="/import-map.json"></script>-->
   </head>
   <body>
     <main id="layout"></main>
     <script type="module">
         //import './main'
 
-            import { getImportMap } from "./importMap";
-        import a from "../dist/vendors/single-spa-vue";
-      /*  const modules = import.meta.glob('../node_modules/vue/dist/vue.esm-browser.prod.js');
-        console.log(modules);
-       const vueURL = import('../node_modules/vue/dist/vue.esm-browser.prod.js').then(r=>console.log(r));
+        import { commonImportMap} from "./importMap";
 
-        console.log(vueURL);*/
-  /*      const no = ['../node_modules/vue/dist/vue.esm-browser.prod.js']
-        const vueURL = import(`${no[0]}?url`).then(r=>{
-            console.log(r);
-        })
-        console.log(vueURL);*/
+        import 'es-module-shims';
 
-        (async function(){
-
-            let vendors = getImportMap(
-                import.meta.env.MODE
-            )
-            const v = await vendors;
-            console.log(v);
-
-            document.body.appendChild(Object.assign(document.createElement('script'), {
-                type: 'importmap-shim',
-                innerHTML: JSON.stringify({
-                    imports: {
-                        ...v,
-                        "@finuslugi/cuf-backoffice": "//localhost:8080/js/app.js",
-                    }}),
-            }));
-
-            import ('es-module-shims').then(()=>{
-                importShim("./root-config.<%= isLocal ? "ts" : "js" %>");
-            });
-          /*  if(import.meta.env.MODE !== 'development') {
-                const vendorsKeys = Object.keys(vendors)
-                const vendorsMap = {}
-                const promiseVendorUrls = Object.values(vendors).map((value)=>{
-                    return import(`${value}?url`).then(r=>r.default);
-                })
-                console.log(vendors);
-
-                Promise.all([...promiseVendorUrls]).then(urls=>{
-                    console.log(urls);
-                    const name = Object.keys(vendors)
-                    urls.forEach((value, index)=>{
-                        vendorsMap[vendorsKeys[index]] = value
-                    })
-
-                    console.log(vendorsMap);
-                    document.body.appendChild(Object.assign(document.createElement('script'), {
-                        type: 'importmap-shim',
-                        innerHTML: JSON.stringify({
-                            imports: {
-                                ...vendors,
-                                "@finuslugi/cuf-backoffice": "//localhost:8080/js/app.js",
-                            }}),
-                    }));
-
-                    import ('es-module-shims').then(()=>{
-                        importShim("./root-config.<%= isLocal ? "ts" : "js" %>");
-                    });
-
-
-                    /!*import("./root-config").then(r=>{
-                        console.log(r);
-                    });*!/
-                })
-            }
-            else {
-
-            }*/
-        })()
-
-
-
-        /*document.body.appendChild(Object.assign(document.createElement('script'), {
-            type: 'importmap',
+        document.body.appendChild(Object.assign(document.createElement('script'), {
+            type: 'importmap-shim',
             innerHTML: JSON.stringify({
                 imports: {
-                    ...vendors,
+                    ...commonImportMap,
                     "@finuslugi/cuf-backoffice": "//localhost:8080/js/app.js",
                 }}),
-        }));*/
-        //importShim("./root-config.<%= isLocal ? "ts" : "js" %>");
+        }));
 
-        //console.log(r);
-        /* new Promise(resolve => {
-             Object.entries(getImportMap(import.meta.env.MODE)).forEach(async ([key, value])=>{
-                 console.log(key, value);
-                 const url = await import(`${value}?url`);
-                 //console.log(url.default);
-                 vendors[key] = url.default
-
-             resolve()
-         })*/
-       // console.log(vendors);
-
-
-
-
+        importShim("./root-config.<%= isLocal ? "ts" : "js" %>");
     </script>
   </body>
 </html>
