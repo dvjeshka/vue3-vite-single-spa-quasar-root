@@ -4,8 +4,7 @@ import { quasar, transformAssetUrls } from '@quasar/vite-plugin';
 import { ViteEjsPlugin } from "vite-plugin-ejs";
 
 import dynamicImport from 'vite-plugin-dynamic-import'
-
-import { resolve } from 'path';
+import { resolve } from 'path'
 
 const envPrefix = 'VUE_APP_';
 
@@ -42,9 +41,11 @@ const env = loadEnv(mode, '', envPrefix);
       },
       output: {
         entryFileNames: importMapConfig.output.entryFileNames,
-        external: importMapConfig.external,
+      },
+      external: importMapConfig.external,
     },
   },
+
   resolve: {
     alias: {
       "@": resolve(__dirname, "src"),
@@ -57,4 +58,4 @@ const env = loadEnv(mode, '', envPrefix);
   preview: {
     port: 9001
   },
-}}});
+}});
