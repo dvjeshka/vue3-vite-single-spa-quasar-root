@@ -8,23 +8,6 @@
   </head>
   <body>
     <main id="layout"></main>
-    <script type="module">
-        //import './main'
-
-        import { commonImportMap} from "./importMap";
-
-        import 'es-module-shims';
-
-        document.body.appendChild(Object.assign(document.createElement('script'), {
-            type: 'importmap-shim',
-            innerHTML: JSON.stringify({
-                imports: {
-                    ...commonImportMap,
-                    "@finuslugi/cuf-backoffice": "//localhost:8080/js/app.js",
-                }}),
-        }));
-
-        importShim("./root-config.<%= isLocal ? "ts" : "js" %>");
-    </script>
+    <script src="./main.ts" type="module"></script>
   </body>
 </html>

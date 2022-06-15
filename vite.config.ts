@@ -8,8 +8,7 @@ import { resolve } from 'path'
 
 const envPrefix = 'VUE_APP_';
 
-
-import { importMapConfig } from "./src/importMap";
+import { vendorConfig } from "./src/vendorConfig";
 
 export default defineConfig(({ mode}) => {
 const env = loadEnv(mode, '', envPrefix);
@@ -35,17 +34,15 @@ const env = loadEnv(mode, '', envPrefix);
       preserveEntrySignatures: true,
       input: {
         index:'./src/index.html',
-        //main:'./src/main.ts',
-        'root-config': "./src/root-config.ts",
-        ...importMapConfig.input
+        registerApplication: "./src/registerApplication.ts",
+        ...vendorConfig.input
       },
       output: {
-        entryFileNames: importMapConfig.output.entryFileNames,
+        entryFileNames: vendorConfig.output.entryFileNames,
       },
-      external: importMapConfig.external,
+      external: vendorConfig.external,
     },
   },
-
   resolve: {
     alias: {
       "@": resolve(__dirname, "src"),

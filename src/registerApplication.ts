@@ -23,8 +23,8 @@ window.addEventListener('single-spa:first-mount',()=> {
 })
 
 registerApplication({
-    name: "@finuslugi/cuf-root",
-    app: () => import('./main'),
+    name: "@finuslugi/cuf-layout",
+    app: () => import('./Layout'),
     activeWhen: '/',
     customProps: {
         domElement: '#layout'
