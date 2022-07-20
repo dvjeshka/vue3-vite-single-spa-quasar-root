@@ -9,6 +9,8 @@
   },
   "dependencies": {
     "@quasar/extras": "^1.14.0",
+    "@vueuse/integrations": "^8.9.4",
+    "axios": "^0.27.2",
     "es-module-shims": "^1.5.6",
     "lodash": "^4.17.21",
     "quasar": "^2.7.1",
