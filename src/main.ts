@@ -10,7 +10,6 @@ document.body.appendChild(Object.assign(document.createElement('script'), {
             "@finuslugi/cuf-backoffice": "//localhost:8080/js/app.js",
         }}),
 }));
-
 const fileType = import.meta.env.DEV ? 'ts' :'js'
 
-importShim(`./registerApplication.${fileType}`);
+importShim(`./registerApplications.${fileType}`);
