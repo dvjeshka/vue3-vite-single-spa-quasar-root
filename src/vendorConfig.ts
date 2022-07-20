@@ -14,6 +14,10 @@ const vendorList = [
     { name:'single-spa-vue', fileName:'single-spa-vue.js', nodeModulePath: 'node_modules/single-spa-vue/dist/esm/single-spa-vue.js' },
 ] as Array<IVendorItem>
 
+const vendorNameToSrcMap = vendorList
+    .reduce((prevVal, currentVal) =>
+        ({ ...prevVal, [currentVal.name]: `./vendors/${currentVal.fileName}`}), {}) as { [name: string]: string }
+
 function entryFileNames({ name }: { name: string }) {
     const nodeModulePath = vendorNameToSrcMap[name];
     return nodeModulePath
@@ -27,10 +31,6 @@ const vendorConfig = {
     external: vendorList.map(({ name }) => name),
     output: { entryFileNames }
 }
-
-const vendorNameToSrcMap = vendorList
-    .reduce((prevVal, currentVal) =>
-        ({ ...prevVal, [currentVal.name]: `./vendors/${currentVal.fileName}`}), {}) as { [name: string]: string }
 
 export { vendorConfig, vendorNameToSrcMap }
 
