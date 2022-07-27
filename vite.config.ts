@@ -18,6 +18,7 @@ export default defineConfig(({ mode }) => {
     envPrefix: [], // https://iendeavor.github.io/import-meta-env/guide.html#framework-specific-notes
     test: {
       dir: './',
+      includeSource: ['./src/**/*.ts'],
       environment: 'happy-dom',
       coverage: {
         src: './src',
@@ -26,7 +27,7 @@ export default defineConfig(({ mode }) => {
         functions: 80,
         branches: 80,
         statements: 80,*/
-        reportsDirectory: '../test/until/.coverage',
+        reportsDirectory: '../test/utils/.coverage',
       },
       reporters: 'vitest-sonar-reporter',
       outputFile: '../test-report.xml',
@@ -60,6 +61,9 @@ export default defineConfig(({ mode }) => {
         },
         external: vendorConfig.external,
       },
+    },
+    define: {
+      'import.meta.vitest': false,
     },
     resolve: {
       alias: {

@@ -5,8 +5,7 @@
   "scripts": {
     "dev": "vite",
     "build": "vue-tsc --noEmit && vite build",
-    "preview:env-runtime": "cross-env BACKOFFICE_API_PREFIX=https://jsonplaceholder.typicode.com TEST=runtimeTEST TITLE=runtimeTitle import-meta-env --example .env.runtime && vite preview",
-    "preview": "vite preview",
+    "preview": "cross-env BACKOFFICE_API_PREFIX=https://jsonplaceholder.typicode.com TEST=runtimeTEST TITLE=runtimeTitle import-meta-env --example .env.runtime && vite preview",
     "lint": "eslint src/**/*.{ts,vue} --fix",
     "prettier": "prettier -w -u . --ignore-path .gitignore",
     "test": "vitest run --coverage",

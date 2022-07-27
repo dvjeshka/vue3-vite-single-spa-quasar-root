@@ -24,6 +24,9 @@
 <script setup lang="ts">
   import { navigateToUrl } from 'single-spa';
   import { defineAsyncComponent } from 'vue';
+  import exampleInSourceTest from '@/utils/exampleInSourceTest';
+
+  exampleInSourceTest(1, 2, 3);
   // This starter template is using Vue 3 <script setup> SFCs
   // Check out https://vuejs.org/api/sfc-script-setup.html#script-setup
   const HelloWorld = defineAsyncComponent(
