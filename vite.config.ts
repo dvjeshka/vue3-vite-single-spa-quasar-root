@@ -41,7 +41,7 @@ export default defineConfig(() => ({
     checker({ vueTsc: true }),
     vue({ template: { transformAssetUrls } }),
     quasar({ autoImportComponentCase: 'pascal' }),
-    compress({ verbose: true, brotli: false }),
+    // compress({ verbose: true, brotli: false }),
   ],
   root: './src',
   build: {
