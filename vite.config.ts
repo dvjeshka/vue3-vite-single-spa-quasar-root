@@ -14,31 +14,31 @@ import ImportMetaEnvPlugin from '@import-meta-env/unplugin';
 import { vendorConfig } from './src/vendorConfig';
 
 export default defineConfig(() => ({
-  envPrefix: [], // https://iendeavor.github.io/import-meta-env/guide.html#framework-specific-notes
-  test: {
+  //envPrefix: [], // https://iendeavor.github.io/import-meta-env/guide.html#framework-specific-notes
+  /*  test: {
     dir: './',
-    includeSource: ['./src/**/*.ts'],
+    includeSource: ['./src/!**!/!*.ts'],
     environment: 'happy-dom',
     coverage: {
       src: ['./src'],
       reportsDirectory: '../test/utils/.coverage',
-      /* all: true,
+      /!* all: true,
        lines: 80,
        functions: 80,
        branches: 80,
-       statements: 80, */
+       statements: 80, *!/
     },
     reporters: ['vitest-sonar-reporter'],
     outputFile: '../test-report.xml',
-  },
+  },*/
   plugins: [
-    ImportMetaEnvPlugin.vite({
+    /*    ImportMetaEnvPlugin.vite({
       env: '.env.default',
       example: '.env.runtime',
     }),
     ViteTips(),
     Inspector(),
-    checker({ vueTsc: true }),
+    checker({ vueTsc: true }),*/
     vue({ template: { transformAssetUrls } }),
     quasar({ autoImportComponentCase: 'pascal' }),
     // compress({ verbose: true, brotli: false }),

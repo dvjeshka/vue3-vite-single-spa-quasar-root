@@ -1,11 +1,11 @@
 <template>
   <div :class="$style.app">
-    <p>Test env runtime TITLE = {{ import.meta.env.TITLE }}</p>
+    <p>Test env runtime TITLE = {{ TITLE }}</p>
     <p>
       Test env runtime BACKOFFICE_API_PREFIX =
-      {{ import.meta.env.BACKOFFICE_API_PREFIX }}
+      {{ BACKOFFICE_API_PREFIX }}
     </p>
-    <p>Test env runtime TEXT = {{ import.meta.env.TEXT }}</p>
+    <p>Test env runtime TEXT = {{ TEXT }}</p>
     <img
       alt="Vue logo"
       src="@/assets/logo.png"
@@ -30,11 +30,15 @@
   // This starter template is using Vue 3 <script setup> SFCs
   // Check out https://vuejs.org/api/sfc-script-setup.html#script-setup
   const HelloWorld = defineAsyncComponent(
-    () => import('@/components/HelloWorld.vue')
+    () => import('@/components/HelloWorld.vue'),
   );
   function routerTo() {
     navigateToUrl('/turnover');
   }
+
+  const { TITLE } = import.meta.env;
+  const { BACKOFFICE_API_PREFIX } = import.meta.env;
+  const { TEXT } = import.meta.env;
 </script>
 
 <style lang="scss" module>
