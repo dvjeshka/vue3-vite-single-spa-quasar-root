@@ -15,6 +15,12 @@ import { vendorConfig } from './src/vendorConfig';
 
 export default defineConfig(() => ({
   //envPrefix: [], // https://iendeavor.github.io/import-meta-env/guide.html#framework-specific-notes
+  test: {
+    dir: './',
+    coverage: {
+      provider: 'v8', // or 'istanbul'
+    },
+  },
   /*  test: {
     dir: './',
     includeSource: ['./src/!**!/!*.ts'],
